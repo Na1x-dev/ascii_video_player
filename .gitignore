@@ -1,0 +1,11 @@
+.venv
+venv
+hollowness.mp4
+idol.mp4
+0
+__pycache__
+.pytest_cache
+test_main.py
+player.py
+.pdfignore
+project_context.pdf
