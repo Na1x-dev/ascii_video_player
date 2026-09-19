@@ -61,7 +61,7 @@ def play_high_res_color_video(video_path, target_width=150):
             # Вычисление яркости
             gray = ((r.astype(np.uint32) * 77 + g.astype(np.uint32) * 150 + b.astype(np.uint32) * 29) >> 8).astype(np.uint8)
             
-            # ИСПРАВЛЕНО: Равномерное и точное распределение яркости по индексам через numpy
+            # Равномерное и точное распределение яркости по индексам через numpy
             min_val, max_val = gray.min(), gray.max()
             if max_val > min_val:
                 # Нормализуем строго в диапазон индексов символов (от 0 до num_chars - 1)
@@ -117,10 +117,19 @@ def play_high_res_color_video(video_path, target_width=150):
         print("\033[0m\nГотово!")
 
 if __name__ == "__main__":
-    # ИСПРАВЛЕНО: Теперь корректно берется элемент sys.argv[1], если передан аргумент
+    # Значения по умолчанию
+    video_file = "video.mp4"
+    width = 150
+
+    # 1. Если передан первый аргумент — это путь к видеофайлу
     if len(sys.argv) > 1:
         video_file = sys.argv[1]
-    else:
-        video_file = "video.mp4"
     
-    play_high_res_color_video(video_file, target_width=150)
+    # 2. Если передан второй аргумент — это желаемая ширина
+    if len(sys.argv) > 2:
+        try:
+            width = int(sys.argv[2])
+        except ValueError:
+            print(f"[!] Ошибка: Указанная ширина '{sys.argv[2]}' не является целым числом. Будет использовано значение 150.")
+
+    play_high_res_color_video(video_file, target_width=width)
