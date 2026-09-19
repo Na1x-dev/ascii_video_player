@@ -12,7 +12,6 @@ player.py
 .pdfignore
 project_context.pdf
 bad_apple.mp4
-compiler.py
 player_video.py
 build/
 dist/
